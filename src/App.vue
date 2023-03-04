@@ -1,9 +1,19 @@
 <template>
-	<div id="id">
-		<router-view />
-	</div>
+  <div id="id">
+    <router-view/>
+  </div>
 </template>
 
-<style lang="scss">
-
-</style>
+<script>
+export default {
+  name: 'App',
+  metaInfo() {
+    return {
+      title: this.$store.state.settings.dynamicTitle && this.$store.state.settings.title,
+      titleTemplate: title => {
+        return title ? `${title} - ${process.env.VUE_APP_TITLE}` : process.env.VUE_APP_TITLE
+      }
+    }
+  }
+}
+</script>
